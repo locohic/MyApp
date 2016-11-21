@@ -1,6 +1,8 @@
 package com.example.loic.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -26,23 +28,17 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.view_text);
         String now = DateUtils.formatDateTime(getApplicationContext(), (new Date()).getTime(), DateFormat.FULL);
         TV1.setText(now);
-        InscButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view_text) {
 
-                Toast.makeText(getApplicationContext(), getString(R.string.view_text), Toast.LENGTH_LONG).show();
-            }
+        };
+    public void inscription(View v){
+        Intent inscription = new Intent(this,Main2Activity.class);
+        startActivity(inscription);
+    }
+    public void connexion(View v) {
+        Intent connexion = new Intent(this,Main3Activity.class);
+        startActivity(connexion);
+    }
 
-            ;
-        });
-        ConnectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view_text) {
-
-                Toast.makeText(getApplicationContext(), getString(R.string.view_text), Toast.LENGTH_LONG).show();
-            };
-        });
-    };
     private void save(){
         Toast.makeText(this,R.string.action_save,Toast.LENGTH_LONG).show();
     }
@@ -75,6 +71,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-}
+};
 
 

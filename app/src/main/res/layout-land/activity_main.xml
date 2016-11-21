@@ -14,12 +14,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/InscButton"
-    android:id="@+id/Inscbutton"/>
+    android:id="@+id/Inscbutton"
+        android:onClick="inscription"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ConnectButton"
-        android:id="@+id/ConnectButton"/>
+        android:id="@+id/ConnectButton"
+        android:onClick="connexion"/>
 
 </LinearLayout>
