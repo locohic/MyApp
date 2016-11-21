@@ -3,6 +3,19 @@ package com.example.loic.myapplication;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -14,8 +27,7 @@ import android.content.Context;
 public class GetBiersService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "com.example.loic.myapplication.action.FOO";
-    private static final String ACTION_BAZ = "com.example.loic.myapplication.action.BAZ";
+    private static final String Get_Biers = "Télécharger une liste de bières";
 
     // TODO: Rename parameters
     private static final String EXTRA_PARAM1 = "com.example.loic.myapplication.extra.PARAM1";
@@ -32,11 +44,10 @@ public class GetBiersService extends IntentService {
      * @see IntentService
      */
     // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
+    public static void startActionBiers(Context context, String param1) {
         Intent intent = new Intent(context, GetBiersService.class);
-        intent.setAction(ACTION_FOO);
+        intent.setAction(Get_Biers);
         intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
     }
 
@@ -47,26 +58,14 @@ public class GetBiersService extends IntentService {
      * @see IntentService
      */
     // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, GetBiersService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
+            if (Get_Biers.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+                handleActionBiers(param1);
             }
         }
     }
@@ -75,9 +74,41 @@ public class GetBiersService extends IntentService {
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    private void handleActionFoo(String param1, String param2) {
+    private void handleActionBiers(String param1) {
         // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
+        Log.d("uu", "thread service name:" + Thread.currentThread().getName() );
+        URL url= null;
+        try {
+            url= new URL("http://binouze.fabrigli.fr/bieres.json");
+            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()){
+                copyInputStreamToFile(conn.getInputStream(), new File(getCacheDir(), "bieres.json"));
+                Log.d("uu", "bieres downloaded");
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void copyInputStreamToFile(InputStream inputStream, File file) {
+        try {
+            OutputStream out = new FileOutputStream(file);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len=inputStream.read(buf))>0);{
+                out.write(buf,0,len);
+            }
+            out.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
