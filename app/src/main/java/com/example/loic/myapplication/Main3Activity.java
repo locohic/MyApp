@@ -36,7 +36,7 @@ public class Main3Activity extends AppCompatActivity {
 
     private static final String Biers_Update = "com.octip.cours.inf4042_11.Biers_Update";
 
-    public class BierUpadate extends BroadcastReceiver {
+    public class BierUpdate extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d("msg", getIntent().getAction());
