@@ -3,6 +3,7 @@ package com.example.loic.myapplication;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.io.File;
@@ -94,7 +95,7 @@ public class GetBiersService extends IntentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(Main3Activity.Biers_Update));
     }
 
     private void copyInputStreamToFile(InputStream inputStream, File file) {
