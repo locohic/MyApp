@@ -1,20 +1,22 @@
 package com.example.loic.myapplication;
 
-import android.content.Context;
-import android.content.DialogInterface;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.text.DateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,10 +28,67 @@ public class MainActivity extends AppCompatActivity {
         Button ConnectButton = (Button) findViewById(R.id.ConnectButton);
         TextView TV1 = (TextView) findViewById(R.id.TV1);
         getString(R.string.view_text);
-        String now = DateUtils.formatDateTime(getApplicationContext(), (new Date()).getTime(), DateFormat.FULL);
-        TV1.setText(now);
+
+        /*String now = DateUtils.formatDateTime(getApplicationContext(), (new Date()).getTime(), DateFormat.FULL);
+        TV1.setText(now);*/
 
         };
+
+    /*public void onStart(){
+        super.onStart();
+        EditText txtDate=(EditText) findViewById(R.id.txtdate);
+        txtDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v,boolean hasFocus){
+                if (hasFocus){
+            DateDialog dialog= new DateDialog(v);
+                    FragmentTransaction ft= getFragmentManager().beginTransaction();
+                    dialog.show(ft, "DatePicker");
+                }
+        }
+    }
+        );
+    } <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtdate"
+        android:textSize="20sp"
+        android:hint="Tapez ici pour choisir la date"
+        android:layout_below="@+id/TV1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />*/
+
+    /*public void datePicker(View view){
+        DatePickerFragment fragment= new DatePickerFragment();
+        fragment.show(getSupportFragmentManager(), "date");
+    }
+    private void setDate(final Calendar calendar) {
+        final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        ((TextView) findViewById(R.id.TV1)).setText(dateFormat.format(calendar.getTime()));
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+    }
+
+    public static class DatePickerFragment extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle saveInstanceState){
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(year, month, day));
+        }
+    }
+
+    @Override
+    public void onDateset(DatePicker view, int year, int month, int day ) {
+        Calendar cal = new GregorianCalendar(year, month, day);
+        setDate(cal);
+    }*/
     public void inscription(View v){
         Intent inscription = new Intent(this,Main2Activity.class);
         startActivity(inscription);
