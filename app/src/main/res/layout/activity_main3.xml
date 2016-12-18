@@ -11,13 +11,13 @@
     tools:context="com.example.loic.myapplication.Main3Activity">
 
     <Button
-        android:text="Télécharger"
+        android:text="Télécharger la liste des bières"
         android:id="@+id/Get_Biers_Button"
          android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
-    android:onClick="" />
+    android:onClick="notifyMe" />
 
 </RelativeLayout>

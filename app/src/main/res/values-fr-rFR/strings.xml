@@ -8,4 +8,8 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_settings">Options</string>
     <string name="action_mode_close_button">Fermer</string>
+    <string name="notification">Notification</string>
+    <string name="notification_title">Ma premiere notification</string>
+    <string name="notification_desc">Cliquez dessus</string>
+
 </resources>

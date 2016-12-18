@@ -6,7 +6,11 @@ import android.content.Context;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,10 +49,10 @@ public class GetBiersService extends IntentService {
      * @see IntentService
      */
     // TODO: Customize helper method
-    public static void startActionBiers(Context context, String param1) {
+    public static void startActionBiers(Context context) {
         Intent intent = new Intent(context, GetBiersService.class);
         intent.setAction(Get_Biers);
-        intent.putExtra(EXTRA_PARAM1, param1);
+        intent.putExtra(EXTRA_PARAM1,"com.example.loic.myapplication.extra.PARAM1");
         context.startService(intent);
     }
 
@@ -77,7 +81,7 @@ public class GetBiersService extends IntentService {
      */
     private void handleActionBiers(String param1) {
         // TODO: Handle action Foo
-        Log.d("uu", "thread service name:" + Thread.currentThread().getName() );
+        Log.i(TAG, "thread service name:" + Thread.currentThread().getName() );
         URL url= null;
         try {
             url= new URL("http://binouze.fabrigli.fr/bieres.json");
@@ -86,7 +90,7 @@ public class GetBiersService extends IntentService {
             conn.connect();
             if (HttpURLConnection.HTTP_OK == conn.getResponseCode()){
                 copyInputStreamToFile(conn.getInputStream(), new File(getCacheDir(), "bieres.json"));
-                Log.d("uu", "bieres downloaded");
+                Log.d(TAG, "bieres downloaded");
             }
         } catch (ProtocolException e) {
             e.printStackTrace();
@@ -111,6 +115,23 @@ public class GetBiersService extends IntentService {
             e.printStackTrace();
         }
     }
+
+    public JSONArray getBiersFromFile(){
+        try {
+            InputStream is = new FileInputStream(getCacheDir()+"/"+"bières.json");
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            is.close();
+            return new JSONArray(new String(buffer,"UTF-8"));
+        } catch (IOException e){
+            e.printStackTrace();
+            return new JSONArray();
+        } catch (JSONException e){
+            e.printStackTrace();
+            return new JSONArray();
+        }
+    }
+
 
     /**
      * Handle action Baz in the provided background thread with the provided
