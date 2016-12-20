@@ -12,12 +12,14 @@
 
     <Button
         android:text="Télécharger la liste des bières"
-        android:id="@+id/Get_Biers_Button"
+        android:id="@+id/button_notif"
          android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:onClick="notifyMe" />
+        android:onClick="Notification_test"
+        tools:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="202dp" />
+
 
 </RelativeLayout>

@@ -23,7 +23,6 @@ Calendar calendar = Calendar.getInstance();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             TV1 = (TextView) findViewById(R.id.TV1);
-            Button InscButton = (Button) findViewById(R.id.Inscbutton);
             Button ConnectButton = (Button) findViewById(R.id.ConnectButton);
             TextView TV1 = (TextView) findViewById(R.id.TV1);
             getString(R.string.view_text);
@@ -43,11 +42,6 @@ Calendar calendar = Calendar.getInstance();
             }
         };
 
-
-    public void inscription(View v){
-        Intent inscription = new Intent(this,Main2Activity.class);
-        startActivity(inscription);
-    }
     public void connexion(View v) {
         Intent connexion = new Intent(this,Main3Activity.class);
         startActivity(connexion);

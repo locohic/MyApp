@@ -52,7 +52,7 @@ public class GetBiersService extends IntentService {
     public static void startActionBiers(Context context) {
         Intent intent = new Intent(context, GetBiersService.class);
         intent.setAction(Get_Biers);
-        intent.putExtra(EXTRA_PARAM1,"com.example.loic.myapplication.extra.PARAM1");
+        intent.putExtra(EXTRA_PARAM1,true);
         context.startService(intent);
     }
 

@@ -10,24 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.loic.myapplication.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/view_text"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/TV1" />
-
-    <Button
-        android:text="@string/InscButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Inscbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="inscription"/>
 
     <Button
         android:text="@string/ConnectButton"
@@ -44,9 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Datebutton"
-        android:layout_above="@+id/Inscbutton"
+        android:onClick="datePicker"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_text"
+        android:id="@+id/TV1"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="datePicker"/>
+        android:layout_marginTop="51dp" />
 
 
 </RelativeLayout>
